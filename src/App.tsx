@@ -9,6 +9,7 @@ import { Essencial } from './components/Essencial'
 import { Contato } from './components/Contato'
 import { Footer } from './components/Footer'
 import { WhatsAppFab } from './components/WhatsAppFab'
+import { AberturaModal } from './components/AberturaModal'
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
       </main>
       <Footer />
       <WhatsAppFab />
+      <AberturaModal />
     </>
   )
 }

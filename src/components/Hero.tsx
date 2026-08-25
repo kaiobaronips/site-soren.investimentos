@@ -25,9 +25,10 @@ export function Hero() {
             <span className="text-card">Seu plano tem direção.</span>
           </h1>
 
-          <p className="mt-5 max-w-2xl text-pretty text-xs leading-relaxed text-negative/75 md:text-sm">
-            A Soren transforma patrimônio, comportamento e objetivos em uma estratégia
-            clara para construir, proteger e perpetuar o que importa.
+          <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-negative md:text-lg">
+            A Soren transforma patrimônio, comportamento e objetivos
+            <br />
+            em uma estratégia clara para construir, proteger e perpetuar o que importa.
           </p>
 
         </div>
