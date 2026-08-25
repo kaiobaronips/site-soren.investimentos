@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Commuter Sans";
+  src: url("https://cdn.prod.website-files.com/67f3c9d25bf0e0d067a18c63/67f3e1bf564ebb334b608f59_CommutersSans-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Commuter Sans";
+  src: url("https://cdn.prod.website-files.com/67f3c9d25bf0e0d067a18c63/67f3e1bfc7848b98755c486a_CommutersSans-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Commuter Sans";
+  src: url("https://cdn.prod.website-files.com/67f3c9d25bf0e0d067a18c63/67f3e1bfd103d93b5e839d27_CommutersSans-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("https://cdn.prod.website-files.com/67f3c9d25bf0e0d067a18c63/67f3e230938e623fcf8dc4f8_HelveticaNowDisplay-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("https://cdn.prod.website-files.com/67f3c9d25bf0e0d067a18c63/67f3e230ac6e8a0b54766227_HelveticaNowDisplay-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("https://cdn.prod.website-files.com/67f3c9d25bf0e0d067a18c63/67f3e23183cefe4060529148_HelveticaNowDisplay-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@theme {
+  --color-void: #fbfcfa;
+  --color-forest: #eef3ef;
+  --color-forest-lit: #e4ece6;
+  --color-forest-line: #d4ded6;
+  --color-bronze: #b07a3e;
+  --color-bronze-lit: #d1ad78;
+  --color-bronze-deep: #845526;
+  --color-bone: #123128;
+  --color-slate: #53635e;
+  --color-brand: #0b563f;
+  --color-brand-deep: #073b2e;
+  --color-brand-soft: #dcebe3;
+  --font-display: "Commuter Sans", Arial, sans-serif;
+  --font-sans: "Helvetica Now Display", "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-void);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-weight: 400;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-soft);
+    color: var(--color-brand-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-bronze);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .t-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+
+  .t-turn {
+    font-family: var(--font-display);
+    font-weight: 300;
+  }
+
+  .t-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-brand) 24%, transparent);
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-brand);
+    background-color: #ffffff;
+  }
+
+  .bronze-gradient {
+    background-color: var(--color-brand);
+  }
+
+  .bronze-text {
+    color: var(--color-brand);
+  }
+
+  .hairline {
+    height: 1px;
+    background-color: currentColor;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
