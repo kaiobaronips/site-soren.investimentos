@@ -36,11 +36,13 @@ export function SectionHead({
   virada,
   texto,
   centro = false,
+  textoClassName = '',
 }: {
   linha1: string
   virada?: string
   texto?: string
   centro?: boolean
+  textoClassName?: string
 }) {
   return (
     <div className={centro ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'}>
@@ -54,7 +56,7 @@ export function SectionHead({
         )}
       </h2>
       {texto && (
-        <p className={`mt-6 max-w-xl text-pretty text-base leading-relaxed text-positive/70 md:text-lg ${centro ? 'mx-auto' : ''}`}>
+        <p className={`mt-6 max-w-xl text-pretty text-base leading-relaxed text-positive md:text-lg ${centro ? 'mx-auto' : ''} ${textoClassName}`}>
           {texto}
         </p>
       )}

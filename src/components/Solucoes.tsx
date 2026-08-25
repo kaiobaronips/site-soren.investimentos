@@ -14,6 +14,7 @@ export function Solucoes() {
               linha1="Cinco frentes,"
               virada="uma estratégia."
               texto="Liberdade para recomendar o instrumento certo para cada objetivo, prazo e momento de vida."
+              textoClassName="text-positive"
             />
           </div>
         </Reveal>
@@ -36,7 +37,7 @@ export function Solucoes() {
                       <span className="t-display block text-[clamp(1.5rem,3vw,2.5rem)] text-positive transition-opacity duration-200 group-hover:opacity-70">
                         {vertical.nome}
                       </span>
-                      <span className="mt-2 block max-w-xl text-pretty text-sm leading-relaxed text-positive/70">
+                      <span className="mt-2 block max-w-xl text-pretty text-sm leading-relaxed text-positive">
                         {vertical.resumo}
                       </span>
                     </span>
@@ -47,10 +48,10 @@ export function Solucoes() {
 
                   {aberto && (
                     <div id={`solucao-${vertical.id}`} className="grid gap-7 pb-9 pl-8 md:grid-cols-2 md:gap-12 md:pl-10">
-                      <p className="text-pretty text-sm leading-relaxed text-positive/70">{vertical.detalhe}</p>
+                      <p className="text-pretty text-sm leading-relaxed text-positive">{vertical.detalhe}</p>
                       <ul className="grid gap-2.5 self-start">
                         {vertical.itens.map((item) => (
-                          <li key={item} className="flex items-baseline gap-3 text-sm text-positive/70">
+                          <li key={item} className="flex items-baseline gap-3 text-sm text-positive">
                             <span aria-hidden="true" className="text-primary">—</span>
                             {item}
                           </li>

@@ -1,22 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
 import { ModalShell } from './ModalShell'
 import { DiagnosticoForm } from './DiagnosticoForm'
-
-/** Atraso antes de abrir, para não competir com a primeira pintura do hero. */
-const ATRASO_MS = 700
-
-type Etapa = 'fechado' | 'abertura' | 'diagnostico'
+import { useModais } from './ModaisContext'
 
 export function AberturaModal() {
-  const [etapa, setEtapa] = useState<Etapa>('fechado')
-
-  useEffect(() => {
-    const t = window.setTimeout(() => setEtapa('abertura'), ATRASO_MS)
-    return () => window.clearTimeout(t)
-  }, [])
-
-  // Estável para não reiniciar os efeitos do shell a cada render.
-  const fechar = useCallback(() => setEtapa('fechado'), [])
+  const { etapa, abrirDiagnostico, fechar } = useModais()
 
   if (etapa === 'fechado') return null
 
@@ -48,7 +35,7 @@ export function AberturaModal() {
           <div className="mt-10 flex flex-col items-center gap-5">
             <button
               type="button"
-              onClick={() => setEtapa('diagnostico')}
+              onClick={abrirDiagnostico}
               className="group inline-flex items-center gap-3 bg-primary px-6 py-4 text-[0.625rem] font-bold uppercase tracking-[0.1em] text-negative transition-colors duration-200 hover:bg-accent sm:text-[0.6875rem] sm:tracking-[0.16em] md:px-10"
             >
               Diagnóstico comportamental e financeiro

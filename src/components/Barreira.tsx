@@ -1,43 +1,52 @@
-import { Reveal, Section, SectionHead } from './ui'
+import { Section } from './ui'
+
+const momentos = [
+  {
+    titulo: 'Construir',
+    texto: 'Transformar renda e capacidade de poupança em patrimônio com método, prazo e intenção.',
+  },
+  {
+    titulo: 'Proteger',
+    texto: 'Organizar riscos, liquidez e estruturas para que o patrimônio atravesse diferentes ciclos.',
+  },
+  {
+    titulo: 'Perpetuar',
+    texto: 'Conectar sucessão, propósito e legado para que o que foi construído continue fazendo sentido.',
+  },
+]
 
 export function Barreira() {
   return (
-    <>
-      <Section id="barreira">
-        <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-28">
-          <Reveal>
-            <SectionHead
-              linha1="Dinheiro sem direção vira"
-              virada="resultado aleatório."
-            />
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div className="space-y-6 text-pretty text-base leading-relaxed text-positive/70 lg:pt-20 md:text-lg">
-              <p className="font-bold text-positive">O problema não é falta de acesso. É falta de clareza.</p>
-              <p>
-                A maioria investe sem estratégia, ajustando o rumo conforme o impulso
-                e a notícia. Patrimônio se constrói quando comportamento e direção
-                caminham juntos.
-              </p>
-              <p className="text-positive">
-                Antes da técnica, existe a escolha.
-                <br />
-                Antes da rentabilidade, existe consciência.
-              </p>
-            </div>
-          </Reveal>
+    <Section id="barreira" className="overflow-hidden pb-0 md:pb-0">
+      <div className="grid gap-12 pb-16 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24 lg:pb-24">
+        <div>
+          <h2 className="t-display max-w-2xl text-balance text-[clamp(2.4rem,5vw,4.8rem)] text-positive">
+            Patrimônio não é uma coleção de produtos.
+          </h2>
         </div>
-      </Section>
 
-      <div className="relative overflow-hidden bg-card px-5 py-20 md:px-8 md:py-28">
-        <Reveal>
-          <blockquote className="t-turn mx-auto max-w-4xl text-balance text-center text-[clamp(1.7rem,3.6vw,3rem)] leading-[1.22] text-positive">
-            “Quem não decide o destino do próprio patrimônio acaba terceirizando o
-            próprio futuro.”
-          </blockquote>
-        </Reveal>
+        <div className="flex max-w-2xl flex-col justify-end lg:pb-2">
+          <p className="font-display text-pretty text-lg font-light leading-relaxed tracking-[-0.05em] text-positive md:text-xl">
+            É um sistema de decisões que precisa acompanhar sua vida, seus riscos e o futuro que você quer construir.
+          </p>
+        </div>
       </div>
-    </>
+
+      <div className="grid md:grid-cols-3">
+        {momentos.map((momento) => (
+          <article
+            key={momento.titulo}
+            className="min-h-64 border-b border-l border-primary/15 px-7 py-8 md:min-h-72 md:border-b-0 md:px-10 md:py-9 lg:px-12"
+          >
+            <h3 className="t-display text-balance text-[clamp(1.5rem,2.1vw,2rem)] font-light text-positive">
+              {momento.titulo}
+            </h3>
+            <p className="mt-12 max-w-sm text-pretty text-[0.9375rem] font-light leading-relaxed text-positive md:mt-14">
+              {momento.texto}
+            </p>
+          </article>
+        ))}
+      </div>
+    </Section>
   )
 }

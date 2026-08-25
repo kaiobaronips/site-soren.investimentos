@@ -15,3 +15,18 @@ Vídeo: **A Man and a Woman Having a Conversation While Looking at the White Pap
 
 Para substituir o material, mantenha os mesmos nomes de arquivo. Recomenda-se um
 take horizontal de 8 a 15 segundos, sem marcas visíveis e com até 4 MB.
+
+## Imagens ilustrativas da equipe
+
+Os arquivos abaixo são provisórios e devem ser substituídos pelos retratos oficiais,
+mantendo os mesmos nomes para preservar o layout:
+
+| Arquivo | Fonte |
+| --- | --- |
+| `equipe-planejamento.jpg` | https://www.pexels.com/photo/professional-portrait-of-a-woman-in-office-setting-30004491/ |
+| `equipe-estrategia.jpg` | https://www.pexels.com/photo/confident-businessman-in-a-modern-office-setting-33131815/ |
+| `equipe-relacionamento.jpg` | https://www.pexels.com/photo/portrait-of-businesswoman-10041258/ |
+| `equipe-time.jpg` | https://www.pexels.com/photo/diverse-business-team-in-modern-office-36765727/ |
+
+Todas as imagens são gratuitas para uso segundo a licença da Pexels. O site as
+identifica como ilustrativas para não atribuir identidades fictícias à equipe Soren.

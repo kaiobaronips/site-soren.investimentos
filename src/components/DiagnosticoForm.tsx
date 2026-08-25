@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { contato, whatsappUrl } from '../content/site'
 
 /**
@@ -120,12 +120,32 @@ function mascaraWhatsapp(valor: string): string {
 export function DiagnosticoForm({ tituloId }: { tituloId: string }) {
   const [passo, setPasso] = useState(0)
   const [respostas, setRespostas] = useState<Record<string, string>>({})
-  const [whatsapp, setWhatsapp] = useState('')
+  // Todos os campos controlados: com nome/e-mail soltos, voltar uma etapa e
+  // avançar de novo apagava os dois e mantinha só o WhatsApp.
+  const [dados, setDados] = useState({ nome: '', email: '', whatsapp: '' })
   const [status, setStatus] = useState<Status>('idle')
   const wa = whatsappUrl()
 
   const etapaContato = passo === PERGUNTAS.length
   const pergunta = etapaContato ? null : PERGUNTAS[passo]
+
+  const raizRef = useRef<HTMLDivElement>(null)
+  const tituloRef = useRef<HTMLHeadingElement>(null)
+  const primeiraEtapa = useRef(true)
+
+  // Ao trocar de etapa o botão clicado desmonta e o foco cai no body, o que
+  // quebra o Tab do modal e deixa leitor de tela sem referência. Além disso o
+  // scroll do painel fica onde estava, podendo abrir a etapa nova no meio.
+  useEffect(() => {
+    if (primeiraEtapa.current) {
+      primeiraEtapa.current = false
+      return
+    }
+    raizRef.current?.closest('[role="dialog"]')?.scrollTo({ top: 0 })
+    tituloRef.current?.focus()
+    // Sem isso, o aviso de "Recebido" continuava na tela ao voltar e avançar.
+    setStatus('idle')
+  }, [passo])
 
   function responder(chave: string, valor: string) {
     setRespostas((r) => ({ ...r, [chave]: valor }))
@@ -134,8 +154,7 @@ export function DiagnosticoForm({ tituloId }: { tituloId: string }) {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const form = e.currentTarget
-    const dados = { ...respostas, ...Object.fromEntries(new FormData(form)) }
+    const envio = { ...respostas, ...dados }
 
     const corpo = [
       'Diagnóstico comportamental e financeiro',
@@ -167,7 +186,7 @@ export function DiagnosticoForm({ tituloId }: { tituloId: string }) {
       const res = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(dados),
+        body: JSON.stringify(envio),
       })
       if (!res.ok) throw new Error(String(res.status))
       setStatus('ok')
@@ -177,114 +196,177 @@ export function DiagnosticoForm({ tituloId }: { tituloId: string }) {
   }
 
   return (
-    <div className="m-auto w-full px-8 py-14 sm:px-12">
-      {/* Progresso */}
-      <div className="flex items-center gap-4">
-        <span className="t-eyebrow shrink-0 text-primary">
-          {String(passo + 1).padStart(2, '0')} / {String(TOTAL).padStart(2, '0')}
-        </span>
-        <span aria-hidden="true" className="h-px flex-1 bg-positive/15">
+    // min-h-full + m-auto no bloco central: o conteúdo fica centralizado no
+    // espaço livre e o rodapé encosta na base do painel, sem depender de
+    // quantos cards a etapa tem.
+    <div
+      ref={raizRef}
+      className="flex min-h-full w-full flex-col bg-background px-7 pt-12 sm:px-12 sm:pt-14"
+    >
+      {/* Progresso ancorado no topo, fora do bloco que se centraliza. */}
+      <div className="shrink-0">
+        <div className="flex justify-end pr-10 text-[0.6875rem] text-positive/45">
+          <span className="shrink-0 tabular-nums">
+            Etapa {String(passo + 1).padStart(2, '0')} de {String(TOTAL).padStart(2, '0')}
+          </span>
+        </div>
+
+        <div
+          role="progressbar"
+          aria-label="Progresso do diagnóstico"
+          aria-valuemin={1}
+          aria-valuemax={TOTAL}
+          aria-valuenow={passo + 1}
+          className="mt-5 h-px overflow-hidden bg-positive/10"
+        >
           <span
-            className="block h-px bg-primary transition-[width] duration-300 ease-out"
-            style={{ width: `${((passo + 1) / TOTAL) * 100}%` }}
+            className="block h-px origin-left bg-primary transition-transform duration-200 ease-out"
+            style={{ transform: `scaleX(${(passo + 1) / TOTAL})` }}
           />
-        </span>
+        </div>
       </div>
 
-      {pergunta ? (
-        <>
-          <h2
-            id={tituloId}
-            className="t-display mt-8 text-pretty text-[clamp(1.25rem,3.4vw,1.6rem)] text-positive"
-          >
-            {pergunta.rotulo}
-          </h2>
+      <div className="m-auto w-full py-10">
 
-          <div className="mt-7 grid gap-2">
-            {pergunta.opcoes.map((opcao) => {
-              const ativa = respostas[pergunta.chave] === opcao
-              return (
-                <button
-                  key={opcao}
-                  type="button"
-                  onClick={() => responder(pergunta.chave, opcao)}
-                  className={`border px-4 py-3 text-left text-[0.8125rem] leading-snug transition-colors duration-200 ${
-                    ativa
-                      ? 'border-primary bg-primary text-negative'
-                      : 'border-positive/15 text-positive/80 hover:border-primary hover:text-positive'
-                  }`}
-                >
-                  {opcao}
-                </button>
-              )
-            })}
-          </div>
-        </>
-      ) : (
-        <>
-          <h2
-            id={tituloId}
-            className="t-display mt-8 text-pretty text-[clamp(1.25rem,3.4vw,1.6rem)] text-positive"
-          >
-            Para finalizar, como podemos te contatar?
-          </h2>
-          <p className="mt-3 text-pretty text-xs leading-relaxed text-positive/65">
-            Responda as perguntas abaixo para receber atendimento de um assessor
-            exclusivo Soren Investimentos.
-          </p>
+        {pergunta ? (
+          <>
+            <h2
+              ref={tituloRef}
+              tabIndex={-1}
+              id={tituloId}
+              className="t-display max-w-md text-balance text-[clamp(1.65rem,4.2vw,2.15rem)] text-positive focus:outline-none"
+            >
+              {pergunta.rotulo}
+            </h2>
+            <p className="mt-4 text-pretty text-xs leading-relaxed text-positive/50">
+              Escolha a alternativa que melhor representa o seu momento atual.
+            </p>
 
-          <form onSubmit={onSubmit} className="mt-7 grid gap-5">
-            <Campo nome="nome" rotulo="Nome completo" required autoComplete="name" />
-            <Campo nome="email" rotulo="E-mail" type="email" required autoComplete="email" />
+            <div className="mt-7 grid">
+              {pergunta.opcoes.map((opcao, indice) => {
+                const ativa = respostas[pergunta.chave] === opcao
+                return (
+                  <button
+                    key={opcao}
+                    type="button"
+                    onClick={() => responder(pergunta.chave, opcao)}
+                    aria-pressed={ativa}
+                    data-selected={ativa}
+                    className="group relative flex w-full items-start gap-4 py-4 text-left text-positive/75 transition-colors duration-200 hover:text-primary focus-visible:text-primary data-[selected=true]:text-primary"
+                  >
+                    <span className="w-6 shrink-0 pt-0.5 text-[0.625rem] tabular-nums text-positive/30 transition-colors duration-200 group-hover:text-accent group-focus-visible:text-accent group-data-[selected=true]:text-accent">
+                      {String(indice + 1).padStart(2, '0')}
+                    </span>
+                    <span className="flex-1 text-pretty text-[0.9375rem] leading-snug">
+                      {opcao}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="shrink-0 translate-x-[-4px] text-primary opacity-0 transition-[opacity,transform] duration-200 ease-out group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 group-data-[selected=true]:translate-x-0 group-data-[selected=true]:opacity-100"
+                    >
+                      →
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      data-last={indice === pergunta.opcoes.length - 1}
+                      className="absolute inset-x-0 bottom-0 h-px bg-positive/10 data-[last=true]:bg-transparent"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-primary transition-transform duration-200 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100 group-data-[selected=true]:scale-x-100"
+                    />
+                  </button>
+                )
+              })}
+            </div>
+          </>
+        ) : (
+          <>
+            <h2
+              ref={tituloRef}
+              tabIndex={-1}
+              id={tituloId}
+              className="t-display max-w-md text-balance text-[clamp(1.65rem,4.2vw,2.15rem)] text-positive focus:outline-none"
+            >
+              Para finalizar, como podemos te contatar?
+            </h2>
+            <p className="mt-4 max-w-md text-pretty text-xs leading-relaxed text-positive/55">
+              Responda as perguntas abaixo para receber atendimento de um assessor
+              exclusivo Soren Investimentos.
+            </p>
 
-            <label className="block">
-              <span className="t-eyebrow text-positive/70">WhatsApp</span>
-              <input
-                type="tel"
-                name="whatsapp"
+            <form onSubmit={onSubmit} className="mt-7 grid gap-5">
+              <Campo
+                nome="nome"
+                rotulo="Nome completo"
                 required
-                inputMode="numeric"
+                autoComplete="name"
+                valor={dados.nome}
+                onChange={(v) => setDados((d) => ({ ...d, nome: v }))}
+              />
+              <Campo
+                nome="email"
+                rotulo="E-mail"
+                type="email"
+                required
+                autoComplete="email"
+                valor={dados.email}
+                onChange={(v) => setDados((d) => ({ ...d, email: v }))}
+              />
+              <Campo
+                nome="whatsapp"
+                rotulo="WhatsApp"
+                type="tel"
+                required
                 autoComplete="tel"
+                inputMode="numeric"
                 placeholder="(11) 99999-9999"
-                value={whatsapp}
-                onChange={(e) => setWhatsapp(mascaraWhatsapp(e.target.value))}
                 pattern="\(\d{2}\) \d{5}-\d{4}"
                 title="Use o formato (11) 99999-9999"
-                className="mt-2 w-full border-b border-primary/20 bg-transparent pb-2 text-sm text-positive transition-colors duration-200 placeholder:text-positive/35 focus:border-primary focus:outline-none"
+                valor={dados.whatsapp}
+                onChange={(v) => setDados((d) => ({ ...d, whatsapp: mascaraWhatsapp(v) }))}
               />
-            </label>
 
-            <button
-              type="submit"
-              disabled={status === 'enviando'}
-              className="group mt-1 inline-flex items-center justify-center gap-3 bg-primary px-6 py-4 text-[0.625rem] font-bold uppercase tracking-[0.1em] text-negative transition-colors duration-200 hover:bg-accent disabled:opacity-60 sm:text-[0.6875rem] sm:tracking-[0.16em]"
-            >
-              {status === 'enviando' ? 'Enviando…' : 'Receber diagnóstico'}
-              <span
-                aria-hidden="true"
-                className="transition-transform duration-200 group-hover:translate-x-1"
+              <button
+                type="submit"
+                disabled={status === 'enviando'}
+                className="group mt-2 inline-flex items-center justify-center gap-3 rounded-full bg-primary px-6 py-4 text-[0.625rem] font-bold uppercase tracking-[0.1em] text-negative transition-colors duration-200 hover:bg-accent disabled:opacity-60 sm:text-[0.6875rem] sm:tracking-[0.16em]"
               >
-                →
-              </span>
-            </button>
+                {status === 'enviando' ? 'Enviando…' : 'Receber diagnóstico'}
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-200 group-hover:translate-x-1"
+                >
+                  →
+                </span>
+              </button>
 
-            <p aria-live="polite" className="min-h-4 text-[0.6875rem] leading-relaxed text-positive/60">
-              {status === 'ok' && 'Recebido. Um assessor entra em contato em breve.'}
-              {status === 'erro' && 'Não foi possível enviar. Tente pelo WhatsApp.'}
-            </p>
-          </form>
-        </>
-      )}
+              <p aria-live="polite" className="min-h-4 text-[0.6875rem] leading-relaxed text-positive/60">
+                {status === 'ok' && 'Recebido. Um assessor entra em contato em breve.'}
+                {status === 'erro' && 'Não foi possível enviar. Tente pelo WhatsApp.'}
+              </p>
+            </form>
+          </>
+        )}
+      </div>
 
-      {passo > 0 && (
-        <button
-          type="button"
-          onClick={() => setPasso((p) => p - 1)}
-          className="mt-8 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-positive/45 underline-offset-4 transition-colors duration-200 hover:text-positive/80 hover:underline"
-        >
-          ← Voltar
-        </button>
-      )}
+      {/*
+        Rodapé colado na base do painel. É sticky, e não só o último item da
+        coluna, porque na etapa de contato o conteúdo passa da altura da tela e
+        o botão ficava abaixo da dobra. O fundo opaco cobre o que passa por trás.
+      */}
+      <div className="sticky bottom-0 z-10 mt-10 flex min-h-5 shrink-0 items-center bg-background pb-9 pt-5 sm:pb-11">
+        {passo > 0 && (
+          <button
+            type="button"
+            onClick={() => setPasso((p) => p - 1)}
+            className="group inline-flex items-center gap-3 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-positive/45 transition-colors duration-200 hover:text-primary"
+          >
+            <span aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-x-1">←</span>
+            Voltar
+          </button>
+        )}
+      </div>
     </div>
   )
 }
@@ -292,15 +374,27 @@ export function DiagnosticoForm({ tituloId }: { tituloId: string }) {
 function Campo({
   nome,
   rotulo,
+  valor,
+  onChange,
   type = 'text',
   required,
   autoComplete,
+  inputMode,
+  placeholder,
+  pattern,
+  title,
 }: {
   nome: string
   rotulo: string
+  valor: string
+  onChange: (valor: string) => void
   type?: string
   required?: boolean
   autoComplete?: string
+  inputMode?: 'numeric' | 'text' | 'tel' | 'email'
+  placeholder?: string
+  pattern?: string
+  title?: string
 }) {
   return (
     <label className="block">
@@ -310,7 +404,13 @@ function Campo({
         name={nome}
         required={required}
         autoComplete={autoComplete}
-        className="mt-2 w-full border-b border-primary/20 bg-transparent pb-2 text-sm text-positive transition-colors duration-200 focus:border-primary focus:outline-none"
+        inputMode={inputMode}
+        placeholder={placeholder}
+        pattern={pattern}
+        title={title}
+        value={valor}
+        onChange={(e) => onChange(e.target.value)}
+        className="mt-2 w-full border-b border-primary/20 bg-transparent pb-2 text-sm text-positive transition-colors duration-200 placeholder:text-positive/35 focus:border-primary focus:outline-none"
       />
     </label>
   )

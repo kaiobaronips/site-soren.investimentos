@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { navegacao, whatsappUrl } from '../content/site'
+import { navegacao } from '../content/site'
+import { useModais } from './ModaisContext'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [aberto, setAberto] = useState(false)
   const [menu, setMenu] = useState<string | null>(null)
-  const wa = whatsappUrl()
+  const { abrirDiagnostico } = useModais()
   const claro = scrolled || aberto || menu !== null
 
   useEffect(() => {
@@ -102,9 +103,9 @@ export function Header() {
           >
             Fale conosco
           </a>
-          <a
-            href={wa ?? '#contato'}
-            {...(wa ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          <button
+            type="button"
+            onClick={abrirDiagnostico}
             className={`rounded-full border px-5 py-2.5 text-sm font-bold transition-colors duration-200 ${
               claro
                 ? 'border-primary bg-primary text-negative hover:opacity-85'
@@ -112,7 +113,7 @@ export function Header() {
             }`}
           >
             Iniciar diagnóstico
-          </a>
+          </button>
         </div>
 
         <button
@@ -190,14 +191,16 @@ export function Header() {
               )}
             </div>
           ))}
-          <a
-            href={wa ?? '#contato'}
-            {...(wa ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            onClick={() => setAberto(false)}
+          <button
+            type="button"
+            onClick={() => {
+              setAberto(false)
+              abrirDiagnostico()
+            }}
             className="mt-7 rounded-full bg-primary px-6 py-4 text-center text-sm font-bold text-negative"
           >
             Iniciar diagnóstico
-          </a>
+          </button>
         </nav>
       </div>
     </header>
