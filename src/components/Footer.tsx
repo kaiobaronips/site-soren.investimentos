@@ -7,12 +7,12 @@ export function Footer() {
   const parceira = institucional.corretoraParceira
 
   return (
-    <footer className="bg-brand-deep text-white/70">
+    <footer className="bg-primary text-negative/70">
       <div className="mx-auto w-full max-w-[1380px] px-5 py-20 md:px-8 md:py-24 xl:px-10">
         <div className="grid gap-14 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <SorenMark className="h-8 w-auto text-white" />
-            <p className="mt-7 max-w-xs text-pretty text-sm leading-relaxed text-white/55">
+            <SorenMark className="h-8 w-auto text-negative" />
+            <p className="mt-7 max-w-xs text-pretty text-sm leading-relaxed text-negative/55">
               Arquitetura de legados. Estruturamos patrimônios com decisões claras,
               dados e direção.
             </p>
@@ -23,7 +23,7 @@ export function Footer() {
                   href={contato.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-bold uppercase text-white/55 transition-colors duration-200 hover:text-bronze-lit"
+                  className="text-xs font-bold uppercase text-negative/55 transition-colors duration-200 hover:text-negative"
                 >
                   LinkedIn
                 </a>
@@ -33,7 +33,7 @@ export function Footer() {
                   href={contato.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-bold uppercase text-white/55 transition-colors duration-200 hover:text-bronze-lit"
+                  className="text-xs font-bold uppercase text-negative/55 transition-colors duration-200 hover:text-negative"
                 >
                   Instagram
                 </a>
@@ -42,13 +42,13 @@ export function Footer() {
           </div>
 
           <nav>
-            <p className="text-xs font-bold uppercase text-white/40">Navegação</p>
+            <p className="text-xs font-bold uppercase text-negative/40">Navegação</p>
             <ul className="mt-6 space-y-3.5">
               {navegacao.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
+                    className="text-sm text-negative/60 transition-colors duration-200 hover:text-negative"
                   >
                     {item.rotulo}
                   </a>
@@ -58,13 +58,13 @@ export function Footer() {
           </nav>
 
           <nav>
-            <p className="text-xs font-bold uppercase text-white/40">Soluções</p>
+            <p className="text-xs font-bold uppercase text-negative/40">Soluções</p>
             <ul className="mt-6 space-y-3.5">
               {verticais.map((v) => (
                 <li key={v.id}>
                   <a
                     href="#solucoes"
-                    className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
+                    className="text-sm text-negative/60 transition-colors duration-200 hover:text-negative"
                   >
                     {v.nome}
                   </a>
@@ -81,8 +81,8 @@ export function Footer() {
           área de compliance da parceira, que costuma exigir aprovação prévia de
           material de divulgação.
         */}
-        <div className="mt-20 border-t border-white/15 pt-10">
-          <div className="max-w-5xl space-y-4 text-xs leading-relaxed text-white/42">
+        <div className="mt-20 border-t border-negative/15 pt-10">
+          <div className="max-w-5xl space-y-4 text-xs leading-relaxed text-negative/45">
             <p>
               {institucional.razaoSocial || '[Razão social]'}
               {institucional.cnpj ? `, inscrita no CNPJ sob o nº ${institucional.cnpj},` : ','} é
@@ -114,13 +114,13 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-col gap-4 border-t border-white/15 pt-8 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-10 flex flex-col gap-4 border-t border-negative/15 pt-8 text-xs text-negative/40 sm:flex-row sm:items-center sm:justify-between">
             <p>© {ANO} Soren Investimentos. Todos os direitos reservados.</p>
             <div className="flex gap-6">
-              <a href="#" className="transition-colors duration-200 hover:text-white">
+              <a href="#" className="transition-colors duration-200 hover:text-negative">
                 Política de privacidade
               </a>
-              <a href="#" className="transition-colors duration-200 hover:text-white">
+              <a href="#" className="transition-colors duration-200 hover:text-negative">
                 Termos de uso
               </a>
             </div>

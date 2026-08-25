@@ -21,7 +21,7 @@ export function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar pelo WhatsApp"
-      className={`fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] right-6 z-40 flex size-14 items-center justify-center rounded-full bg-brand text-white shadow-lg transition-[opacity,transform] duration-200 hover:opacity-85 md:bottom-[calc(2rem+env(safe-area-inset-bottom))] md:right-8 ${
+      className={`fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] right-6 z-40 flex size-14 items-center justify-center rounded-full bg-primary text-negative shadow-lg shadow-primary/20 transition-[opacity,transform] duration-200 hover:opacity-85 md:bottom-[calc(2rem+env(safe-area-inset-bottom))] md:right-8 ${
         visivel ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
       }`}
     >

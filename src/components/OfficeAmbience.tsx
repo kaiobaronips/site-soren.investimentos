@@ -10,15 +10,15 @@ export function OfficeAmbience({ className = '' }: { className?: string }) {
   return (
     <div className={`grain pointer-events-none overflow-hidden ${className}`} aria-hidden="true">
       {/* Base */}
-      <div className="absolute inset-0 bg-void" />
+      <div className="absolute inset-0 bg-background" />
 
       {/* Volume de verde — profundidade da sala */}
       <div
         className="absolute inset-0"
         style={{
           backgroundImage:
-            'radial-gradient(120% 80% at 78% 18%, rgba(22,56,42,0.85) 0%, rgba(5,14,11,0) 58%),' +
-            'radial-gradient(90% 70% at 12% 72%, rgba(15,42,32,0.7) 0%, rgba(5,14,11,0) 60%)',
+            'radial-gradient(120% 80% at 78% 18%, rgba(11,86,63,0.85) 0%, rgba(11,86,63,0) 58%),' +
+            'radial-gradient(90% 70% at 12% 72%, rgba(11,86,63,0.7) 0%, rgba(11,86,63,0) 60%)',
         }}
       />
 
@@ -26,14 +26,14 @@ export function OfficeAmbience({ className = '' }: { className?: string }) {
       <div className="absolute inset-0 opacity-[0.16] [animation:slats_38s_linear_infinite]"
         style={{
           backgroundImage:
-            'repeating-linear-gradient(97deg, rgba(201,168,118,0) 0px, rgba(201,168,118,0) 46px,' +
-            'rgba(201,168,118,0.55) 46px, rgba(201,168,118,0.55) 49px,' +
-            'rgba(227,203,160,0.28) 49px, rgba(227,203,160,0.28) 58px,' +
-            'rgba(201,168,118,0) 58px, rgba(201,168,118,0) 104px)',
+            'repeating-linear-gradient(97deg, rgba(176,122,62,0) 0px, rgba(176,122,62,0) 46px,' +
+            'rgba(176,122,62,0.55) 46px, rgba(176,122,62,0.55) 49px,' +
+            'rgba(176,122,62,0.28) 49px, rgba(176,122,62,0.28) 58px,' +
+            'rgba(176,122,62,0) 58px, rgba(176,122,62,0) 104px)',
           maskImage:
-            'radial-gradient(75% 95% at 72% 8%, #000 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0) 78%)',
+            'radial-gradient(75% 95% at 72% 8%, #fff 0%, rgba(255,255,255,0.55) 42%, rgba(255,255,255,0) 78%)',
           WebkitMaskImage:
-            'radial-gradient(75% 95% at 72% 8%, #000 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0) 78%)',
+            'radial-gradient(75% 95% at 72% 8%, #fff 0%, rgba(255,255,255,0.55) 42%, rgba(255,255,255,0) 78%)',
         }}
       />
 
@@ -42,7 +42,7 @@ export function OfficeAmbience({ className = '' }: { className?: string }) {
         className="absolute inset-0 opacity-70 [animation:bloom_16s_ease-in-out_infinite_alternate]"
         style={{
           backgroundImage:
-            'radial-gradient(48% 62% at 76% 6%, rgba(201,168,118,0.2) 0%, rgba(201,168,118,0) 64%)',
+            'radial-gradient(48% 62% at 76% 6%, rgba(176,122,62,0.2) 0%, rgba(176,122,62,0) 64%)',
         }}
       />
 
@@ -51,7 +51,7 @@ export function OfficeAmbience({ className = '' }: { className?: string }) {
         className="absolute inset-x-0 bottom-0 h-[38%]"
         style={{
           backgroundImage:
-            'linear-gradient(to top, rgba(201,168,118,0.07) 0%, rgba(201,168,118,0.02) 38%, rgba(5,14,11,0) 100%)',
+            'linear-gradient(to top, rgba(176,122,62,0.07) 0%, rgba(176,122,62,0.02) 38%, rgba(11,86,63,0) 100%)',
         }}
       />
 
@@ -60,8 +60,8 @@ export function OfficeAmbience({ className = '' }: { className?: string }) {
         className="absolute inset-0"
         style={{
           backgroundImage:
-            'linear-gradient(to top, rgba(5,14,11,0.97) 0%, rgba(5,14,11,0.62) 42%, rgba(5,14,11,0.34) 100%),' +
-            'linear-gradient(to right, rgba(5,14,11,0.9) 0%, rgba(5,14,11,0.1) 46%, rgba(5,14,11,0) 100%)',
+            'linear-gradient(to top, rgba(11,86,63,0.97) 0%, rgba(11,86,63,0.62) 42%, rgba(11,86,63,0.34) 100%),' +
+            'linear-gradient(to right, rgba(11,86,63,0.9) 0%, rgba(11,86,63,0.1) 46%, rgba(11,86,63,0) 100%)',
         }}
       />
 

@@ -14,14 +14,14 @@ export function Barreira() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="space-y-6 text-pretty text-base leading-relaxed text-slate lg:pt-20 md:text-lg">
-              <p className="font-bold text-bone">O problema não é falta de acesso. É falta de clareza.</p>
+            <div className="space-y-6 text-pretty text-base leading-relaxed text-positive/70 lg:pt-20 md:text-lg">
+              <p className="font-bold text-positive">O problema não é falta de acesso. É falta de clareza.</p>
               <p>
                 A maioria investe sem estratégia, ajustando o rumo conforme o impulso
                 e a notícia. Patrimônio se constrói quando comportamento e direção
                 caminham juntos.
               </p>
-              <p className="text-bone">
+              <p className="text-positive">
                 Antes da técnica, existe a escolha.
                 <br />
                 Antes da rentabilidade, existe consciência.
@@ -31,9 +31,9 @@ export function Barreira() {
         </div>
       </Section>
 
-      <div className="relative overflow-hidden bg-brand-soft px-5 py-20 md:px-8 md:py-28">
+      <div className="relative overflow-hidden bg-card px-5 py-20 md:px-8 md:py-28">
         <Reveal>
-          <blockquote className="t-turn mx-auto max-w-4xl text-balance text-center text-[clamp(1.7rem,3.6vw,3rem)] leading-[1.22] text-brand-deep">
+          <blockquote className="t-turn mx-auto max-w-4xl text-balance text-center text-[clamp(1.7rem,3.6vw,3rem)] leading-[1.22] text-positive">
             “Quem não decide o destino do próprio patrimônio acaba terceirizando o
             próprio futuro.”
           </blockquote>

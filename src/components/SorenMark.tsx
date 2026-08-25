@@ -28,7 +28,7 @@ export function SorenMark({ className, variant = 'full' }: Props) {
         SOREN
       </text>
       {/* Ponto bronze — separador do lockup */}
-      <circle cx="80.5" cy="10.5" r="1.9" fill="#B07A3E" />
+      <circle cx="80.5" cy="10.5" r="1.9" className="fill-accent" />
       <text
         x="0.5" y="26" fill="currentColor" opacity="0.78"
         fontFamily="Helvetica Now Display, Arial, sans-serif" fontSize="6.4" fontWeight="700" letterSpacing="4.1"

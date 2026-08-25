@@ -27,42 +27,26 @@ mesma pasta. Os tokens vivem em [`src/index.css`](src/index.css).
 
 ### Paleta
 
-Principal **dark green**, secundária **degradê bronze** — extraída do site em
-produção (`soreninvestimentos.com.br`), não do `Guideline SOREN.pptx`. Ver
-"Conflito de identidade" abaixo.
+O site usa quatro cores semânticas centralizadas. As regras completas estão em
+[`PALETTE_GUIDELINES.md`](PALETTE_GUIDELINES.md).
 
 | Token | Hex | Papel |
 | --- | --- | --- |
-| `void` | `#050E0B` | base, verde quase preto |
-| `forest` | `#0F2A20` | verde escuro — cor primária |
-| `forest-lit` | `#16382A` | superfície elevada |
-| `forest-line` | `#1E4636` | traço sobre verde |
-| `bronze` | `#C9A876` | acento — paleta secundária |
-| `bronze-lit` | `#E3CBA0` | topo do degradê |
-| `bronze-deep` | `#8C6F45` | base do degradê |
-| `bone` | `#F1ECE0` | texto sobre escuro |
-
-O degradê bronze está nas utilidades `.bronze-gradient` (fundo) e
-`.bronze-text` (texto) em `src/index.css`.
+| `primary` | `#004849` | CTAs, estados ativos e superfícies institucionais |
+| `card` | `#F2F2F2` | cards, formulários e blocos de apoio |
+| `background` | `#FFFFFF` | fundo geral e superfícies claras |
+| `positive` | `#000000` | textos sobre superfícies claras |
+| `negative` | `#FFFFFF` | textos sobre verde, vídeo ou imagens escuras |
+| `accent` | `#B07A3E` | detalhes e animações autorizados |
 
 ### Tipografia
 
-Mesma dupla do site em produção, ambas no Google Fonts:
+Dupla tipográfica institucional do projeto:
 
 | Fonte | Papel |
 | --- | --- |
-| **Sora** | títulos (`.t-display`) e a virada em itálico leve (`.t-turn`) |
-| **Inter** | corpo, menus, botões e etiquetas |
-
-### Conflito de identidade — resolver
-
-O `Guideline SOREN.pptx` desta pasta é o **Brand Guidelines da Akros Capital
-Group / RTX S.A Holding**. Ele especifica outra paleta (creme, cinza, terracota,
-bordô) e outras fontes (Almarena Neue, Helvetica Neue, Classico) — nada disso
-bate com o site em produção da Soren.
-
-O site segue o **site em produção**, que é a fonte viva da marca. Se o guideline
-for a referência correta, é ele que precisa ser atualizado — não este código.
+| **Commuter Sans** | headlines e títulos (`.t-display` e `.t-turn`) |
+| **Helvetica Now Display** | textos, menus, botões e etiquetas |
 
 ### Logo
 

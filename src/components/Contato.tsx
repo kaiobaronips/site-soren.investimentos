@@ -62,7 +62,7 @@ export function Contato() {
   }
 
   return (
-    <Section id="contato" tone="forest">
+    <Section id="contato">
       <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
         <Reveal>
           <div>
@@ -79,9 +79,9 @@ export function Contato() {
                   href={wa}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 text-bone transition-colors duration-200 hover:text-brand"
+                  className="group flex items-center gap-4 text-positive transition-opacity duration-200 hover:opacity-65"
                 >
-                  <span className="t-eyebrow w-24 shrink-0 text-slate">WhatsApp</span>
+                  <span className="t-eyebrow w-24 shrink-0 text-positive/70">WhatsApp</span>
                   <span className="text-[0.9375rem]">Falar agora</span>
                   <span
                     aria-hidden="true"
@@ -94,24 +94,24 @@ export function Contato() {
               {contato.email && (
                 <a
                   href={`mailto:${contato.email}`}
-                  className="flex items-center gap-4 text-bone transition-colors duration-200 hover:text-brand"
+                  className="flex items-center gap-4 text-positive transition-opacity duration-200 hover:opacity-65"
                 >
-                  <span className="t-eyebrow w-24 shrink-0 text-slate">E-mail</span>
+                  <span className="t-eyebrow w-24 shrink-0 text-positive/70">E-mail</span>
                   <span className="text-[0.9375rem]">{contato.email}</span>
                 </a>
               )}
               {contato.telefone && (
                 <a
                   href={`tel:${contato.telefone.replace(/\D/g, '')}`}
-                  className="flex items-center gap-4 text-bone transition-colors duration-200 hover:text-brand"
+                  className="flex items-center gap-4 text-positive transition-opacity duration-200 hover:opacity-65"
                 >
-                  <span className="t-eyebrow w-24 shrink-0 text-slate">Telefone</span>
+                  <span className="t-eyebrow w-24 shrink-0 text-positive/70">Telefone</span>
                   <span className="text-[0.9375rem]">{contato.telefone}</span>
                 </a>
               )}
               {contato.endereco.linha1 && (
-                <p className="flex items-start gap-4 text-bone">
-                  <span className="t-eyebrow w-24 shrink-0 pt-1 text-slate">Escritório</span>
+                <p className="flex items-start gap-4 text-positive">
+                  <span className="t-eyebrow w-24 shrink-0 pt-1 text-positive/70">Escritório</span>
                   <span className="text-[0.9375rem] leading-relaxed">
                     {contato.endereco.linha1}
                     {contato.endereco.cidade && (
@@ -128,7 +128,7 @@ export function Contato() {
         </Reveal>
 
         <Reveal delay={120}>
-          <form onSubmit={onSubmit} className="grid gap-7 rounded-2xl border border-forest-line bg-white p-6 shadow-sm md:p-10">
+          <form onSubmit={onSubmit} className="grid gap-7 rounded-2xl border border-primary/15 bg-card p-6 shadow-sm shadow-primary/10 md:p-10">
             <div className="grid gap-7 sm:grid-cols-2">
               <Campo nome="nome" rotulo="Nome" required autoComplete="name" />
               <Campo nome="email" rotulo="E-mail" type="email" required autoComplete="email" />
@@ -136,21 +136,21 @@ export function Contato() {
             <div className="grid gap-7 sm:grid-cols-2">
               <Campo nome="telefone" rotulo="Telefone" type="tel" required autoComplete="tel" />
               <label className="group block">
-                <span className="t-eyebrow text-slate">Interesse</span>
+                <span className="t-eyebrow text-positive/70">Interesse</span>
                 <select
                   name="interesse"
                   defaultValue=""
-                  className="mt-3 w-full appearance-none border-b border-forest-line bg-transparent pb-3 text-sm text-bone transition-colors duration-200 focus:border-brand focus:outline-none"
+                  className="mt-3 w-full appearance-none border-b border-primary/20 bg-transparent pb-3 text-sm text-positive transition-colors duration-200 focus:border-primary focus:outline-none"
                 >
-                  <option value="" className="bg-white">
+                  <option value="" className="bg-background">
                     Selecione
                   </option>
                   {verticais.map((v) => (
-                    <option key={v.id} value={v.nome} className="bg-white">
+                    <option key={v.id} value={v.nome} className="bg-background">
                       {v.nome}
                     </option>
                   ))}
-                  <option value="Não sei ainda" className="bg-white">
+                  <option value="Não sei ainda" className="bg-background">
                     Não sei ainda
                   </option>
                 </select>
@@ -158,21 +158,21 @@ export function Contato() {
             </div>
 
             <label className="block">
-              <span className="t-eyebrow text-slate">Mensagem</span>
+              <span className="t-eyebrow text-positive/70">Mensagem</span>
               <textarea
                 name="mensagem"
                 rows={4}
-                className="mt-3 w-full resize-none border-b border-forest-line bg-transparent pb-3 text-sm text-bone transition-colors duration-200 placeholder:text-slate/60 focus:border-brand focus:outline-none"
+                className="mt-3 w-full resize-none border-b border-primary/20 bg-transparent pb-3 text-sm text-positive transition-colors duration-200 placeholder:text-positive/45 focus:border-primary focus:outline-none"
                 placeholder="Conte brevemente sobre o seu momento."
               />
             </label>
 
-            <label className="flex items-start gap-3 text-xs leading-relaxed text-slate">
+            <label className="flex items-start gap-3 text-xs leading-relaxed text-positive/70">
               <input
                 type="checkbox"
                 name="consentimento"
                 required
-                className="mt-1 size-4 shrink-0 accent-[#0b563f]"
+                className="mt-1 size-4 shrink-0 accent-primary"
               />
               <span>
                 Autorizo a Soren a tratar meus dados para retorno deste contato,
@@ -184,7 +184,7 @@ export function Contato() {
               <button
                 type="submit"
                 disabled={status === 'enviando'}
-                className="group inline-flex items-center gap-2.5 rounded-full bg-brand px-8 py-4 text-sm font-bold text-white transition-opacity duration-200 hover:opacity-85 disabled:opacity-50"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-primary px-8 py-4 text-sm font-bold text-negative transition-opacity duration-200 hover:opacity-85 disabled:opacity-50"
               >
                 {status === 'enviando' ? 'Enviando…' : 'Enviar'}
                 <span
@@ -195,7 +195,7 @@ export function Contato() {
                 </span>
               </button>
 
-              <p aria-live="polite" className="text-xs text-slate">
+              <p aria-live="polite" className="text-xs text-positive/70">
                 {status === 'ok' && 'Recebido. Retornamos em breve.'}
                 {status === 'erro' && 'Não foi possível enviar. Tente pelo WhatsApp.'}
               </p>
@@ -222,13 +222,13 @@ function Campo({
 }) {
   return (
     <label className="block">
-      <span className="t-eyebrow text-slate">{rotulo}</span>
+      <span className="t-eyebrow text-positive/70">{rotulo}</span>
       <input
         type={type}
         name={nome}
         required={required}
         autoComplete={autoComplete}
-        className="mt-3 w-full border-b border-forest-line bg-transparent pb-3 text-sm text-bone transition-colors duration-200 focus:border-brand focus:outline-none"
+        className="mt-3 w-full border-b border-primary/20 bg-transparent pb-3 text-sm text-positive transition-colors duration-200 focus:border-primary focus:outline-none"
       />
     </label>
   )

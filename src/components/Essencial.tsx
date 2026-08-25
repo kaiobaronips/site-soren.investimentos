@@ -24,31 +24,31 @@ export function Essencial() {
               {essencial.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-5 rounded-xl border border-forest-line bg-white px-8 py-7 transition-colors duration-200 hover:bg-forest"
+                  className="flex items-center gap-5 rounded-xl border border-primary/15 bg-card px-8 py-7 transition-opacity duration-200 hover:opacity-85"
                 >
-                  <span aria-hidden="true" className="h-px w-8 shrink-0 bg-bronze" />
-                  <span className="t-display text-xl text-bone">{item}</span>
+                  <span aria-hidden="true" className="h-px w-8 shrink-0 bg-primary" />
+                  <span className="t-display text-xl text-positive">{item}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-10 rounded-2xl bg-brand-soft p-8">
-              <p className="text-pretty text-sm leading-relaxed text-slate">
+            <div className="mt-10 rounded-2xl bg-card p-8">
+              <p className="text-pretty text-sm leading-relaxed text-positive/70">
                 A Soren não custodia recursos e não tem poder discricionário sobre a
                 sua conta. Diagnóstico, recomendação e acompanhamento são nossos.
-                <span className="font-bold text-bone"> A decisão é sempre sua.</span>
+                <span className="font-bold text-positive"> A decisão é sempre sua.</span>
               </p>
             </div>
 
             {comDados.length > 0 && (
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
                 {comDados.map((ind) => (
-                  <div key={ind.legenda} className="rounded-xl border border-forest-line bg-white p-8">
-                    <p className="t-display text-[2.4rem] leading-none text-bone">
+                  <div key={ind.legenda} className="rounded-xl border border-primary/15 bg-card p-8">
+                    <p className="t-display text-[2.4rem] leading-none text-positive">
                       {ind.valor}
-                      <span className="bronze-text ml-1 text-2xl">{ind.sufixo}</span>
+                      <span className="ml-1 text-2xl text-positive">{ind.sufixo}</span>
                     </p>
-                    <p className="mt-3 text-sm text-slate">{ind.legenda}</p>
+                    <p className="mt-3 text-sm text-positive/70">{ind.legenda}</p>
                   </div>
                 ))}
               </div>
