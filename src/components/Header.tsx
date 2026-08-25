@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { institucional, navegacao, whatsappUrl } from '../content/site'
+import { navegacao, whatsappUrl } from '../content/site'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -31,27 +31,39 @@ export function Header() {
       }`}
       onMouseLeave={() => setMenu(null)}
     >
-      <div className="mx-auto flex h-[104px] w-full max-w-[1380px] items-center gap-6 px-5 md:px-8 xl:px-10">
-        <a href="#topo" className="flex shrink-0 items-center gap-2" aria-label="Soren Investimentos — início">
-          <img
-            src={claro ? '/Ativo 7.png' : '/Ativo 8.png'}
-            alt=""
+      <div
+        className={`mx-auto flex w-full max-w-[1380px] items-center gap-6 px-5 transition-[height] duration-300 ease-out md:px-8 xl:px-10 ${
+          scrolled ? 'h-20' : 'h-[104px]'
+        }`}
+      >
+        <div className="flex shrink-0 items-start gap-6">
+          <a href="#topo" className="flex shrink-0 items-center" aria-label="Soren Investimentos — início">
+            <img
+              src={claro ? '/logo2.png' : '/logo1.png'}
+              alt=""
+              aria-hidden="true"
+              className="h-8 w-auto object-contain md:h-9"
+            />
+          </a>
+
+          <span
             aria-hidden="true"
-            className="h-8 w-auto object-contain md:h-9"
+            className={`hidden h-5 w-px shrink-0 sm:block ${claro ? 'bg-primary/20' : 'bg-negative/35'}`}
           />
-          {institucional.corretoraParceira && (
-            <>
-              <span aria-hidden="true" className={`hidden h-7 w-px sm:block ${claro ? 'bg-primary/20' : 'bg-negative/35'}`} />
-              <span className={`hidden max-w-28 text-[0.55rem] font-bold leading-tight sm:block ${claro ? 'text-positive/70' : 'text-negative/70'}`}>
-                A SUA
-                <br />
-                BUTIQUE
-                <br />
-                DE INVESTIMENTOS
-              </span>
-            </>
-          )}
-        </a>
+
+          <svg
+            viewBox="0 0 500 451"
+            role="img"
+            aria-label="XP Investimentos"
+            className="-ml-3 hidden h-5 w-auto shrink-0 sm:block"
+          >
+            <path
+              d="m363.85 348.31h56.578c21.159 0 35.879-9.6598 35.879-29.439 0-19.779-14.719-29.439-35.879-29.439h-56.578zm0 102.58h75.437c40.018 0 60.718-20.7 60.718-60.718v-41.858h-1.38c-11.5 34.959-41.398 45.538-76.817 45.538h-56.118c-1.38 0-1.8403 0.45939-1.8403 1.8394zm-106.26-132.01 57.957 56.118v-112.24zm-196.87 132.01h254.83v-12.88c0-22.539 7.8205-35.418 25.759-42.318v-1.38h-71.297c-3.6796 0-5.0596-0.45939-7.8196-3.2194l-37.259-38.639-38.638 39.098c-1.8403 1.8403-3.2202 2.76-6.8999 2.76h-57.498c-3.2194 0-3.2194-1.8394-1.38-3.6796l73.597-71.297-74.977-72.678c-1.8394-1.8394-1.38-3.6796 1.8403-3.6796h57.957c3.2202 0 4.6002 0.46029 6.4396 2.76l40.479 40.479 38.178-40.479c1.8403-1.8394 3.2202-2.76 5.9802-2.76h151.33c34.959 0 65.777 11.5 77.277 46.458h1.38v-228.61c0-40.018-20.7-60.717-60.718-60.717h-378.56c-40.018 0-60.717 20.699-60.717 60.717v329.81c0 39.558 20.699 60.258 60.717 60.258z"
+              fill="currentColor"
+              opacity={claro ? '0.85' : '1'}
+            />
+          </svg>
+        </div>
 
         <nav className="ml-auto hidden items-center gap-7 xl:flex" aria-label="Navegação principal">
           {navegacao.map((item) => (
@@ -93,7 +105,11 @@ export function Header() {
           <a
             href={wa ?? '#contato'}
             {...(wa ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-negative transition-opacity duration-200 hover:opacity-85"
+            className={`rounded-full border px-5 py-2.5 text-sm font-bold transition-colors duration-200 ${
+              claro
+                ? 'border-primary bg-primary text-negative hover:opacity-85'
+                : 'border-negative bg-transparent text-negative hover:bg-negative/10'
+            }`}
           >
             Iniciar diagnóstico
           </a>

@@ -1,9 +1,5 @@
 import type { ReactNode } from 'react'
 
-export function Pill({ children }: { children: ReactNode }) {
-  return <span className="pill">{children}</span>
-}
-
 export function Section({
   id,
   children,
@@ -36,13 +32,11 @@ export function Reveal({
 
 /** Título de seção: etiqueta institucional + headline editorial. */
 export function SectionHead({
-  pill,
   linha1,
   virada,
   texto,
   centro = false,
 }: {
-  pill: string
   linha1: string
   virada?: string
   texto?: string
@@ -50,8 +44,7 @@ export function SectionHead({
 }) {
   return (
     <div className={centro ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'}>
-      <Pill>{pill}</Pill>
-      <h2 className="t-display mt-7 text-[clamp(2.15rem,4.5vw,4rem)] text-balance text-positive">
+      <h2 className="t-display text-[clamp(2.15rem,4.5vw,4rem)] text-balance text-positive">
         {linha1}
         {virada && (
           <>

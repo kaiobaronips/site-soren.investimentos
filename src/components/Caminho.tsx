@@ -5,7 +5,7 @@ export function Caminho() {
   return (
     <Section id="caminho">
       <Reveal>
-        <SectionHead pill="Como funciona" linha1="Seu caminho" virada="na Soren." centro />
+        <SectionHead linha1="Seu caminho" virada="na Soren." centro />
       </Reveal>
 
       <ol className="mt-16 grid gap-4 sm:grid-cols-2 lg:mt-20 lg:grid-cols-5">

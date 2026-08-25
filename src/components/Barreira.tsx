@@ -7,7 +7,6 @@ export function Barreira() {
         <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-28">
           <Reveal>
             <SectionHead
-              pill="Barreira de sempre"
               linha1="Dinheiro sem direção vira"
               virada="resultado aleatório."
             />

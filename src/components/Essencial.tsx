@@ -10,7 +10,6 @@ export function Essencial() {
         <Reveal>
           <div className="lg:sticky lg:top-32">
             <SectionHead
-              pill="Essencial"
               linha1="Não organizamos investimentos."
               virada="Organizamos decisões."
               texto="Patrimônio, comportamento e execução no mesmo lugar. Não entregamos uma carteira. Entregamos direção."

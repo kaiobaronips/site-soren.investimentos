@@ -6,7 +6,6 @@ export function Metodo() {
     <Section id="metodo">
       <Reveal>
         <SectionHead
-          pill="Modelo de estratégia"
           linha1="Estratégia não é agitação de mercado."
           virada="É coerência."
           texto="Quatro princípios sustentam cada decisão que tomamos com você."

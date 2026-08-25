@@ -6,7 +6,6 @@ export function Niveis() {
     <Section id="niveis">
       <Reveal>
         <SectionHead
-          pill="Acima da execução"
           linha1="Todo patrimônio sério precisa de"
           virada="um próximo nível."
           texto="Da organização inicial à sofisticação, cada etapa pede uma estrutura e decisões diferentes."

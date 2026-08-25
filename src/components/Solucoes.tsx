@@ -11,7 +11,6 @@ export function Solucoes() {
         <Reveal>
           <div className="lg:sticky lg:top-28">
             <SectionHead
-              pill="Soluções"
               linha1="Cinco frentes,"
               virada="uma estratégia."
               texto="Liberdade para recomendar o instrumento certo para cada objetivo, prazo e momento de vida."

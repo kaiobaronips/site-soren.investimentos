@@ -67,7 +67,6 @@ export function Contato() {
         <Reveal>
           <div>
             <SectionHead
-              pill="Contato"
               linha1="A primeira conversa"
               virada="não custa nada."
               texto="Um diagnóstico honesto do seu momento patrimonial. Se não fizermos sentido para você, dizemos isso na primeira reunião."
