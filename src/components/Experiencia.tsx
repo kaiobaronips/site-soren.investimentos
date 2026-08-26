@@ -1,6 +1,6 @@
 import { Section } from './ui'
 import { useModais } from './ModaisContext'
-import { MostradorTicks } from './MostradorTicks'
+import { EquipeOrbit } from './EquipeOrbit'
 
 export function Experiencia() {
   const { abrirDiagnostico } = useModais()
@@ -13,7 +13,7 @@ export function Experiencia() {
     // isso o bloco invade a seção de cima, já que translate desloca o desenho
     // mas não reserva espaço no layout. Ao mudar aquela altura, ajustar aqui.
     <div className="bg-card lg:pt-[270px]">
-      <Section id="experiencia" className="bg-primary text-negative lg:pb-96">
+      <Section id="experiencia" className="bg-primary text-negative lg:pb-64">
         {/*
           Card de texto e vídeo formam um bloco único e colado, centralizado na
           página. O bloco inteiro sobe metade da própria altura para fora do
@@ -63,25 +63,23 @@ export function Experiencia() {
           </div>
         </div>
 
-        {/*
-          Sem max-w-6xl aqui de propósito: este bloco acompanha a largura do
-          <Section>, alinhando à margem esquerda do site — e não à do card,
-          que é mais estreito e centralizado.
-        */}
-        <div className="grid items-center gap-12 lg:-mt-28 lg:grid-cols-[1fr_auto]">
-          <div>
-            <p className="t-display text-[clamp(1.65rem,3vw,2.75rem)] font-light text-negative">
-              Uma equipe que enxerga
+        <div className="relative left-1/2 w-[calc(100vw-2.5rem)] max-w-[1800px] -translate-x-1/2 lg:-mt-28">
+          <div className="max-w-2xl lg:ml-[3%]">
+            <p className="t-display text-balance text-[clamp(2rem,3.8vw,3.5rem)] font-light text-negative">
+              Uma <span className="text-accent">equipe</span> que enxerga
               <br />
               o patrimônio por inteiro.
             </p>
-            <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-negative/70">
-              Diferentes especialidades. Uma única direção.
+            <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-negative md:text-xl">
+              Diferentes especialidades.
+              <br />
+              Uma única direção.
             </p>
           </div>
 
-          {/* viewBox tem proporção 760x400 (1,9:1) — a largura define a altura. */}
-          <MostradorTicks className="hidden h-auto w-[440px] shrink-0 justify-self-end lg:block xl:w-[560px]" />
+          <div className="mt-12 lg:mt-20">
+            <EquipeOrbit />
+          </div>
         </div>
       </Section>
     </div>
