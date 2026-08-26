@@ -112,14 +112,44 @@ export const principios: Principio[] = [
   },
 ]
 
-export type Etapa = { numero: string; titulo: string; texto: string }
+export type Etapa = { numero: string; titulo: string; texto: string; imagem: string; alt: string }
 
 export const caminho: Etapa[] = [
-  { numero: '01', titulo: 'Primeiro contato', texto: 'Entendemos o seu momento e se há aderência com a nossa forma de trabalhar.' },
-  { numero: '02', titulo: 'Diagnóstico', texto: 'Análise comportamental e financeira. Onde o patrimônio está e o que o está travando.' },
-  { numero: '03', titulo: 'Estratégia e plano', texto: 'Reunião com o planejamento construído: alocação, prazos e critérios de decisão.' },
-  { numero: '04', titulo: 'Decisão e execução', texto: 'Aprovação sua e início da implementação. A decisão é sempre do investidor.' },
-  { numero: '05', titulo: 'Acompanhamento', texto: 'Monitoramento contínuo, rebalanceamento e ajuste de rota.' },
+  {
+    numero: '01',
+    titulo: 'Primeiro contato',
+    texto: 'Entendemos o seu momento e se há aderência com a nossa forma de trabalhar.',
+    imagem: '/caminho-primeiro-contato.jpg',
+    alt: 'Consultor conversando com clientes em uma primeira reunião de atendimento.',
+  },
+  {
+    numero: '02',
+    titulo: 'Diagnóstico',
+    texto: 'Análise comportamental e financeira. Onde o patrimônio está e o que o está travando.',
+    imagem: '/caminho-diagnostico.jpg',
+    alt: 'Assessor analisando documentos financeiros com cliente em escritório.',
+  },
+  {
+    numero: '03',
+    titulo: 'Estratégia e plano',
+    texto: 'Reunião com o planejamento construído: alocação, prazos e critérios de decisão.',
+    imagem: '/caminho-estrategia.jpg',
+    alt: 'Equipe discutindo estratégia com gráficos e laptop em sala de reunião.',
+  },
+  {
+    numero: '04',
+    titulo: 'Decisão e execução',
+    texto: 'Aprovação sua e início da implementação. A decisão é sempre do investidor.',
+    imagem: '/caminho-decisao.jpg',
+    alt: 'Profissionais assinando documentos para formalizar uma decisão.',
+  },
+  {
+    numero: '05',
+    titulo: 'Acompanhamento',
+    texto: 'Monitoramento contínuo, rebalanceamento e ajuste de rota.',
+    imagem: '/caminho-acompanhamento.jpg',
+    alt: 'Consultor acompanhando clientes em uma conversa de revisão patrimonial.',
+  },
 ]
 
 export type Nivel = { rotulo: string; titulo: string; texto: string }

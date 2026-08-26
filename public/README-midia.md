@@ -30,3 +30,27 @@ mantendo os mesmos nomes para preservar o layout:
 
 Todas as imagens são gratuitas para uso segundo a licença da Pexels. O site as
 identifica como ilustrativas para não atribuir identidades fictícias à equipe Soren.
+
+## Imagens da jornada
+
+| Arquivo | Etapa | Fonte |
+| --- | --- | --- |
+| `caminho-primeiro-contato.jpg` | Primeiro contato | https://www.pexels.com/photo/a-man-talking-to-a-client-while-sitting-at-a-table-7821908/ |
+| `caminho-diagnostico.jpg` | Diagnóstico | https://www.pexels.com/photo/an-agent-showing-documents-to-his-client-7821671/ |
+| `caminho-estrategia.jpg` | Estratégia e plano | https://www.pexels.com/photo/a-group-of-people-having-a-meeting-in-the-office-7710147/ |
+| `caminho-decisao.jpg` | Decisão e execução | https://www.pexels.com/photo/a-person-signing-a-contract-7641842/ |
+| `caminho-acompanhamento.jpg` | Acompanhamento | https://www.pexels.com/photo/insurance-agent-sitting-next-to-smiling-clients-8441861/ |
+
+As imagens foram escolhidas para representar visualmente cada etapa da jornada:
+contato, análise, estratégia, formalização e acompanhamento.
+
+## Vídeo institucional da seção Experiência
+
+| Arquivo | Fonte |
+| --- | --- |
+| `experiencia-institucional.mp4` | https://www.pexels.com/video/an-agent-talking-to-his-client-while-holding-documents-7822017/ |
+| `experiencia-institucional.jpg` | Poster extraído da mesma página do vídeo no Pexels. |
+
+Vídeo: **Businessmen discuss financial documents in a bright office setting**,
+de RDNE Stock project, Pexels. Material gratuito para uso segundo a licença da
+Pexels.
