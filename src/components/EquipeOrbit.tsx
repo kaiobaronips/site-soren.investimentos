@@ -18,24 +18,7 @@ const DURACAO_SAIDA = 0.34
 /** O arco é grande e ambiente: duração maior dá a ele sensação de inércia. */
 const DURACAO_ARCO = 0.9
 
-/**
- * Curva própria do texto. A EASE_ENTRADA é feita para posição: ela dispara no
- * começo e se arrasta no fim, o que em opacidade lê como surgir de repente e
- * depois travar. Esta é um S simétrico, que distribui o clareamento por igual.
- */
-const EASE_TEXTO = [0.33, 0, 0.67, 1] as const
-
-/**
- * Mesma duração e mesma curva na entrada e na saída, sem atraso entre elas.
- * Assim as duas opacidades ficam exatamente complementares — o que um perde o
- * outro ganha, e a soma se mantém em 1 do começo ao fim. Com durações ou
- * atrasos diferentes, sobra um instante em que os dois estão fracos e a área
- * do texto quase esvazia: é esse buraco que se lê como entrada travada.
- *
- * A sobreposição maior não embaralha a leitura porque o texto que sai também
- * desfoca — o desfoque separa os dois melhor do que o tempo separaria.
- */
-const DURACAO_TROCA_TEXTO = 0.5
+const DURACAO_TROCA_TEXTO = 0.18
 
 /** Cargos conduzem, foto acompanha. */
 const ATRASO_FOTO = 0.05
@@ -58,7 +41,7 @@ type Profissional = {
 const PROFISSIONAIS: readonly Profissional[] = [
   {
     nome: 'Felipe Boim',
-    cargo: 'Head de Consórcio',
+    cargo: 'Head de Consórcio\nGrupo Soren',
     resenha:
       'Felipe é formado em economia pela Universidade Estadual de Londrina. Com mais de 5 anos de experiência no mercado de investimentos e assessoria financeira.',
     imagem: '/felipe.boim.jpg',
@@ -75,7 +58,7 @@ const PROFISSIONAIS: readonly Profissional[] = [
   },
   {
     nome: 'Felipe Correa',
-    cargo: 'Head de Contabilidade',
+    cargo: 'Head de Contabilidade\nGrupo Soren',
     resenha:
       'Felipe é o profissional responsável pela área de contabilidade da Soren Investimentos. Com mais de 5 anos de experiência no setor e criador da Conta B, produto que revolucionou o mercado de assessoria contábil.',
     imagem: '/felipe.correa.jpg',
@@ -109,6 +92,14 @@ const PROFISSIONAIS: readonly Profissional[] = [
     alt: 'Gabriel Lopes, Growth Marketing Grupo Soren',
     // Retrato alto: centralizado o topo da cabeça saía do recorte.
     posicaoImagem: '50% 20%',
+  },
+  {
+    nome: 'Higor Cabral',
+    cargo: 'Consultor Junior',
+    resenha: 'Consultor Junior credenciado Soren Investimentos.',
+    imagem: '/higor.cabral.jpeg',
+    alt: 'Higor Cabral, Consultor Junior da Soren Investimentos',
+    posicaoImagem: '50% 22%',
   },
 ]
 
@@ -191,7 +182,7 @@ export function EquipeOrbit() {
 
   const trocaTexto = reduzirMovimento
     ? { duration: 0 }
-    : { duration: DURACAO_TROCA_TEXTO, ease: EASE_TEXTO }
+    : { duration: DURACAO_TROCA_TEXTO, ease: 'easeOut' as const }
 
   const transicaoArco = reduzirMovimento
     ? { duration: 0 }
@@ -298,7 +289,7 @@ export function EquipeOrbit() {
                 className="absolute inset-x-0 top-1/2 origin-right"
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <p className="t-display -translate-y-1/2 text-right text-balance text-[clamp(1.125rem,2.4vw,2.625rem)] font-light text-negative">
+                <p className="t-display -translate-y-1/2 whitespace-pre-line text-right text-balance text-[clamp(1.125rem,2.4vw,2.625rem)] font-light text-negative">
                   {profissional.cargo}
                 </p>
               </motion.div>
@@ -333,20 +324,16 @@ export function EquipeOrbit() {
         </AnimatePresence>
       </div>
 
-      <div className="absolute right-[14%] top-1/2 hidden w-[22%] -translate-y-1/2 sm:block">
+      <div className="absolute right-[14%] top-1/2 hidden h-52 w-[22%] -translate-y-1/2 items-center sm:grid lg:h-56">
         <AnimatePresence initial={false} custom={direcao}>
           <motion.div
             key={posicao}
             custom={direcao}
-            // Sem deslocamento: transladar um bloco de texto de várias linhas
-            // força repintura e renderização subpixel irregular, e era isso
-            // que travava a entrada. A saída desfoca — filtro é composto na
-            // GPU, então não reintroduz o engasgo. A entrada é só fade: entrar
-            // desfocado deixaria o texto ilegível justo quando ele chega.
-            initial={{ opacity: 0, filter: 'blur(0px)' }}
-            animate={{ opacity: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, filter: 'blur(4px)', transition: trocaTexto }}
+            initial={{ x: reduzirMovimento ? 0 : 22, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: reduzirMovimento ? 0 : -16, opacity: 0 }}
             transition={trocaTexto}
+            className="col-start-1 row-start-1 w-full"
           >
             <p className="t-display text-base font-light text-accent xl:text-lg">
               {profissionalAtual.nome}
