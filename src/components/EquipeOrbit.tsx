@@ -40,6 +40,14 @@ type Profissional = {
 
 const PROFISSIONAIS: readonly Profissional[] = [
   {
+    nome: 'Marcos Pretti',
+    cargo: 'Gestor Multi-Family Office (MFO)',
+    resenha:
+      'É o profissional responsável por coordenar a gestão integrada do patrimônio de várias famílias de alta e ultra-alta renda.',
+    imagem: '/gestor-mfo.png',
+    alt: 'Marcos Pretti, Gestor Multi-Family Office (MFO) da Soren Investimentos',
+  },
+  {
     nome: 'Felipe Boim',
     cargo: 'Head de Consórcio\nGrupo Soren',
     resenha:
