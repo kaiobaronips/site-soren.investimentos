@@ -48,15 +48,6 @@ const PROFISSIONAIS: readonly Profissional[] = [
     alt: 'Felipe Boim, Head de Consórcio da Soren Investimentos',
   },
   {
-    nome: 'Eduarda Folco',
-    cargo: 'Assessora de Investimento',
-    resenha:
-      'Eduarda possui mais de 10 anos de experiência como corretora de consórcio e ampla experiência com alavancagem patrimonial.',
-    imagem: '/eduarda.Folco.jpg',
-    alt: 'Eduarda Folco, Assessora de Investimento da Soren Investimentos',
-    alturaImagem: '115%',
-  },
-  {
     nome: 'Felipe Correa',
     cargo: 'Head de Contabilidade\nGrupo Soren',
     resenha:
